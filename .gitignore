@@ -1,0 +1,10 @@
+# Ignore system generated files
+.vscode
+__pycache__/
+.DS_Store
+
+
+# Ignore known types
+.env
+sample.db
+test.json

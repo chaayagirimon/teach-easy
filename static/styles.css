@@ -1,0 +1,26 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    box-shadow: 0 4px 8px rgba(89, 196, 175);
+}
+
+.nav-link {
+    font-size: 1.1rem;
+    margin-right: 15px;
+}
+
+.nav-link:hover {
+    color: #ffc107 !important;
+}
+
+footer {
+    background-color: #59c4af;
+    color: #ffffff;
+    padding: 10px 0;
+}
+
+footer p {
+    margin: 0;
+}

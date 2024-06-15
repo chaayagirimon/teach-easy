@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Add Course</title>
+    <script>
+        function toggleInput(checkbox, inputId) {
+            var inputBox = document.getElementById(inputId);
+            inputBox.disabled = !checkbox.checked;
+            if (!checkbox.checked) {
+                inputBox.value = ''; // Clear the input if the checkbox is unchecked
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{{ url_for('index') }}">Teach Easy</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index_add') }}">Add Course</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Calendar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Performance</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Profile</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <h1>Add Course</h1>
+    <form action="/add" method="post">
+        <label for="subject">subject:</label><br>
+        <select id="subject" name="subject">
+            {% for id in result["Subject"] %}
+            <option value="{{ result['Subject'][id] }}">{{ result['Subject'][id] }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="class">Class:</label><br>
+        <select id="class" name="class">
+            {% for id in result["Class"] %}
+            <option value="{{ result['Class'][id] }}">{{ result['Class'][id] }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="assignments">Assignment:</label><br>
+        {% for id in result["Assignment"] %}
+        <input type="checkbox" id="assignment_{{ loop.index }}" name="assignments"
+            value="{{ result['Assignment'][id] }}" onchange="toggleInput(this, 'weightage_{{ loop.index }}')">
+        <label for="assignment_{{ loop.index }}">{{ result['Assignment'][id] }}</label><br>
+        <input type="text" id="weightage_{{ loop.index }}" name="weightages" disabled><br>
+        {% endfor %}
+        <input type="submit" value="Submit">
+    </form>
+
+    <footer class="bg-dark text-white text-center py-3 mt-4">
+        <p>&copy; 2024 Teach Easy. All rights reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
